@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../views/views.dart';
+
 class Router {
   static const String homeRoute = '/';
   static const String loginRoute = '/login';
@@ -9,7 +11,7 @@ class Router {
       case homeRoute:
         return MaterialPageRoute(builder: (context) => Container());
       case loginRoute:
-        return MaterialPageRoute(builder: (context) => Container());
+        return MaterialPageRoute(builder: (context) => LoginPage());
       default:
         return null;
     }
