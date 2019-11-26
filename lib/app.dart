@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'helpers/router.dart';
+import 'helpers/helpers.dart';
 
 class App extends StatelessWidget {
   @override
@@ -8,7 +8,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       onGenerateRoute: Router.generateRoute,
-      initialRoute: Router.homeRoute,
+      initialRoute: Router.loginRoute,
     );
   }
 }
