@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'helpers/router.dart';
+import 'helpers/helpers.dart';
 
 class App extends StatelessWidget {
   @override
