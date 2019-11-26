@@ -4,9 +4,25 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: const Text("ELEC database"),
+          leading: Container(),
+        ),
         body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: LoginForm()));
+            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Image(
+                  image: AssetImage('assets/politocean_logo.png'),
+                  width: 150,
+                  height: 150,
+                ),
+                SizedBox(height: 20),
+                LoginForm()
+              ],
+            )));
   }
 }
 
@@ -23,6 +39,7 @@ class _LoginFormState extends State<LoginForm> {
     return Form(
       key: _formKey,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           // Student ID textfield
