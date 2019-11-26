@@ -8,7 +8,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       onGenerateRoute: Router.generateRoute,
-      initialRoute: Router.loginRoute,
+      initialRoute: Router.homeRoute,
     );
   }
 }
