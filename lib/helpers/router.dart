@@ -9,7 +9,7 @@ class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case homeRoute:
-        return MaterialPageRoute(builder: (context) => Container());
+        return MaterialPageRoute(builder: (context) => HomePage());
       case loginRoute:
         return MaterialPageRoute(builder: (context) => LoginPage());
       default:
