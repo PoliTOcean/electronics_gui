@@ -21,12 +21,14 @@ class App extends StatelessWidget {
       onGenerateRoute: Router.generateRoute,
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: (context, state) {
-          if (state is Uninitialized) {
-            return LoginPage();
+          if (state is Unauthenticated) {
+            return LoginPage(userRepository: _userRepository);
           } else if (state is Authenticated) {
-            return Container();
+            return Scaffold(
+                body: Container(child: Center(child: Text('AUTHENTICATED'))));
           } else {
-            return null;
+            return Scaffold(
+                body: Container(child: Center(child: Text('UNINITIALIZED'))));
           }
         },
       ),
