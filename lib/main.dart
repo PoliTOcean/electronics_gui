@@ -1,9 +1,6 @@
-import 'dart:js';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:bloc/bloc.dart';
 
 import 'resources/resources.dart';
@@ -29,6 +26,8 @@ class SimpleBlocDelegate extends BlocDelegate {
 
 void main() {
   // Override for desktop embedding
+  WidgetsFlutterBinding.ensureInitialized();
+
   debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
 
   BlocSupervisor.delegate = SimpleBlocDelegate();
