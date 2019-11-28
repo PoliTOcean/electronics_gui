@@ -1,8 +1,13 @@
+import 'dart:js';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:bloc/bloc.dart';
 
+import 'resources/resources.dart';
+import 'blocs/blocs.dart';
 import 'app.dart';
 
 class SimpleBlocDelegate extends BlocDelegate {
@@ -28,5 +33,10 @@ void main() {
 
   BlocSupervisor.delegate = SimpleBlocDelegate();
 
-  runApp(App());
+  final UserRepository userRepository = UserRepository();
+
+  runApp(BlocProvider(
+      create: (context) =>
+          AuthenticationBloc(userRepository: userRepository)..add(AppStarted()),
+      child: App(userRepository: userRepository)));
 }
