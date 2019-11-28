@@ -39,24 +39,26 @@ class Component extends Equatable {
       this.note,
       this.link,
       @required this.createdBy,
-      @required this.createdOn,
       @required this.updatedBy,
-      @required this.updatedOn})
-      : super([
-          componentId,
-          name,
-          category,
-          package,
-          box,
-          cell,
-          quantity,
-          note,
-          link,
-          createdBy,
-          createdOn,
-          updatedBy,
-          updatedOn
-        ]);
+      @required this.createdOn,
+      @required this.updatedOn});
+
+  @override
+  List<Object> get props => [
+        componentId,
+        name,
+        category,
+        package,
+        box,
+        cell,
+        quantity,
+        note,
+        link,
+        createdBy,
+        updatedBy,
+        createdOn,
+        updatedOn
+      ];
 
   factory Component.fromJson(Map<String, dynamic> json) =>
       _$ComponentFromJson(json);

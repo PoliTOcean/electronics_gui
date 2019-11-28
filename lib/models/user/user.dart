@@ -18,8 +18,11 @@ class User extends Equatable {
       @required this.password,
       @required this.firstName,
       @required this.lastName,
-      @required this.permissions})
-      : super([studentId, password, firstName, lastName, permissions]);
+      @required this.permissions});
+
+  @override
+  List<Object> get props =>
+      [studentId, password, firstName, lastName, permissions];
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
   Map<String, dynamic> toJson() => _$UserToJson(this);

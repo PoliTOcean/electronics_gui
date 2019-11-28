@@ -20,12 +20,12 @@ Component _$ComponentFromJson(Map<String, dynamic> json) {
     createdBy: json['created_by'] == null
         ? null
         : User.fromJson(json['created_by'] as Map<String, dynamic>),
-    createdOn: json['created_on'] == null
-        ? null
-        : DateTime.parse(json['created_on'] as String),
     updatedBy: json['updated_by'] == null
         ? null
         : User.fromJson(json['updated_by'] as Map<String, dynamic>),
+    createdOn: json['created_on'] == null
+        ? null
+        : DateTime.parse(json['created_on'] as String),
     updatedOn: json['updated_on'] == null
         ? null
         : DateTime.parse(json['updated_on'] as String),
