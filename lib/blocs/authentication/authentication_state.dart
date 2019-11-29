@@ -1,6 +1,8 @@
 import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
 
+import '../../models/models.dart';
+
 abstract class AuthenticationState extends Equatable {
   const AuthenticationState();
 
@@ -11,8 +13,7 @@ abstract class AuthenticationState extends Equatable {
 class Uninitialized extends AuthenticationState {}
 
 class Authenticated extends AuthenticationState {
-  //TODO: Using User model instead of a string
-  final String user;
+  final User user;
 
   const Authenticated({@required this.user});
 
