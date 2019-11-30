@@ -6,14 +6,14 @@ import 'package:http/http.dart' as http;
 import '../models/models.dart';
 
 class Firebase {
-  final String _apiKey = "AIzaSyDZ8qfIC7lbxv0kjYObHo9mCitw8oJhNis";
-  final String _authDomain = "politocean-3b8e9.firebaseapp.com";
-  final String _databaseURL = "https://politocean-3b8e9.firebaseio.com";
-  final String _projectId = "politocean-3b8e9";
-  final String _storageBucket = "politocean-3b8e9.appspot.com";
-  final String _messagingSenderId = "616005941472";
-  final String _appId = "1:616005941472:web:abf2ff0718412fb340f885";
-  final String _measurementId = "G-GS24QHX72D";
+  final String _apiKey = "AIzaSyB_OkffGppkmKL4XXUquL3ulYo5--5FvRM";
+  final String _authDomain = "politocean-a23cc.firebaseapp.com";
+  final String _databaseURL = "https://politocean-a23cc.firebaseio.com";
+  final String _projectId = "politocean-a23cc";
+  final String _storageBucket = "politocean-a23cc.appspot.com";
+  final String _messagingSenderId = "465166232104";
+  final String _appId = "1:465166232104:web:677e5ed3a2c42c7c19a31d";
+  final String _measurementId = "G-2QGXBG6X57";
 
   final http.Client httpClient;
 
