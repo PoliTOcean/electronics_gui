@@ -6,48 +6,23 @@ part 'user.g.dart';
 
 @JsonSerializable()
 class User extends Equatable {
-  final String kind;
-  final String localId;
+  @JsonKey(name: '_id')
+  final int userId;
   final String email;
-  final String displayName;
-  final String idToken;
-  final bool registered;
-  final String refreshToken;
-  final String expiresIn;
+  final String firstName;
+  final String lastName;
+  final int privileges;
 
   User(
-      {@required this.kind,
-      @required this.localId,
+      {@required this.userId,
       @required this.email,
-      this.displayName,
-      @required this.idToken,
-      @required this.registered,
-      @required this.refreshToken,
-      @required this.expiresIn});
-
-  @override
-  List<Object> get props => [
-        kind,
-        localId,
-        email,
-        displayName,
-        idToken,
-        registered,
-        refreshToken,
-        expiresIn
-      ];
+      @required this.firstName,
+      @required this.lastName,
+      @required this.privileges});
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
   Map<String, dynamic> toJson() => _$UserToJson(this);
 
   @override
-  String toString() => """{
-      kind: $kind,
-      localId: $localId,
-      email: $email,
-      displayName: $displayName,
-      idToken: $idToken,
-      registered: $registered,
-      refreshToken: $refreshToken,
-      expiresIn: $expiresIn}""";
+  List<Object> get props => [userId, email, firstName, lastName, privileges];
 }
