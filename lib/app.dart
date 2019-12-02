@@ -24,8 +24,7 @@ class App extends StatelessWidget {
           if (state is Unauthenticated) {
             return LoginPage(userRepository: _userRepository);
           } else if (state is Authenticated) {
-            return Scaffold(
-                body: Container(child: Center(child: Text('AUTHENTICATED'))));
+            return HomePage();
           } else {
             return Scaffold(
                 body: Container(child: Center(child: Text('UNINITIALIZED'))));
