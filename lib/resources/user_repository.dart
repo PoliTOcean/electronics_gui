@@ -1,26 +1,40 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:convert';
 
-class UserRepository {
-  final FirebaseAuth _firebaseAuth;
+import 'package:meta/meta.dart';
+import 'package:http/http.dart' as http;
 
-  UserRepository({FirebaseAuth firebaseAuth})
-      : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;
+import '../models/models.dart';
+import 'repository.dart';
 
-  Future<void> signInWithCredentials(String email, String password) {
-    return _firebaseAuth.signInWithEmailAndPassword(
-        email: email, password: password);
+class UserRepository extends Repository {
+  final http.Client httpClient;
+
+  UserRepository({@required this.httpClient});
+
+  Future<List<User>> getUsers({search}) async {
+    final url = (search) ? '$baseUrl/users' : '$baseUrl/users/?search=$search';
+    final response = await httpClient.get(url);
+
+    if (response.statusCode != 200) {
+      throw Exception();
+    }
+
+    List<User> users = [];
+    json
+        .decode(response.body)['results']
+        .forEach((user) => users.add(User.fromJson(user)));
+
+    return users;
   }
 
-  Future<void> signOut() async {
-    return await _firebaseAuth.signOut();
-  }
+  Future<User> getUser({@required id}) async {
+    final url = '$baseUrl/users/$id';
+    final response = await httpClient.get(url);
 
-  Future<bool> isSignedIn() async {
-    return (await _firebaseAuth.currentUser()) != null;
-  }
+    if (response.statusCode != 200) {
+      throw Exception();
+    }
 
-  //TODO: Replace this metod to one which returns an User object
-  Future<String> getUser() async {
-    return (await _firebaseAuth.currentUser()).email;
+    return User.fromJson(json.decode(response.body)['results']);
   }
 }
