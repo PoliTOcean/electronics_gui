@@ -8,10 +8,10 @@ import 'resources/resources.dart';
 import 'views/views.dart';
 
 class App extends StatelessWidget {
-  final UserRepository _userRepository;
+  final AuthRepository _authRepository;
 
-  App({Key key, @required UserRepository userRepository})
-      : _userRepository = userRepository,
+  App({Key key, @required AuthRepository authRepository})
+      : _authRepository = authRepository,
         super(key: key);
 
   @override
@@ -22,7 +22,7 @@ class App extends StatelessWidget {
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: (context, state) {
           if (state is Unauthenticated) {
-            return LoginPage(userRepository: _userRepository);
+            return LoginPage(authRepository: _authRepository);
           } else if (state is Authenticated) {
             return HomePage();
           } else {

@@ -7,10 +7,10 @@ import '../../resources/resources.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
-  final UserRepository _userRepository;
+  final AuthRepository _authRepository;
 
-  AuthenticationBloc({@required UserRepository userRepository})
-      : _userRepository = userRepository;
+  AuthenticationBloc({@required AuthRepository authRepository})
+      : _authRepository = authRepository;
 
   @override
   AuthenticationState get initialState => Uninitialized();
@@ -29,8 +29,8 @@ class AuthenticationBloc
 
   Stream<AuthenticationState> _mapAppStartedState() async* {
     try {
-      if (await _userRepository.isSignedIn()) {
-        yield Authenticated(user: await _userRepository.getUser());
+      if (_authRepository.isUserSignedIn()) {
+        yield Authenticated(user: _authRepository.currentUser);
       } else {
         yield Unauthenticated();
       }
@@ -40,11 +40,10 @@ class AuthenticationBloc
   }
 
   Stream<AuthenticationState> _mapLoggedInToState() async* {
-    yield Authenticated(user: await _userRepository.getUser());
+    yield Authenticated(user: _authRepository.currentUser);
   }
 
   Stream<AuthenticationState> _mapLoggedOutToState() async* {
     yield Unauthenticated();
-    _userRepository.signOut();
   }
 }

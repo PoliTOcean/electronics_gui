@@ -12,7 +12,7 @@ User _$UserFromJson(Map<String, dynamic> json) {
     email: json['email'] as String,
     firstName: json['firstName'] as String,
     lastName: json['lastName'] as String,
-    privileges: json['privileges'] as int,
+    privileges: json['privileges'] as String,
   );
 }
 
