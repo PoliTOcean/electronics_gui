@@ -11,7 +11,7 @@ class User extends Equatable {
   final String email;
   final String firstName;
   final String lastName;
-  final int privileges;
+  final String privileges;
 
   User(
       {@required this.userId,
