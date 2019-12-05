@@ -6,6 +6,11 @@ import '../../resources/resources.dart';
 import 'bloc.dart';
 
 class ComponentsBloc extends Bloc<ComponentsEvent, ComponentsState> {
+  final ComponentRepository _componentRepository;
+
+  ComponentsBloc({@required ComponentRepository componentRepository})
+      : _componentRepository = componentRepository;
+
   @override
   ComponentsState get initialState => ComponentsEmpty();
 
@@ -13,18 +18,17 @@ class ComponentsBloc extends Bloc<ComponentsEvent, ComponentsState> {
   Stream<ComponentsState> mapEventToState(ComponentsEvent event) async* {
     if (event is FetchComponents) {
       yield* _mapComponentsToState();
-    } else if (event is FetchComponentsById) {
-      yield* _mapComponentsByIdToState(event.id);
     }
   }
 
   Stream<ComponentsState> _mapComponentsToState() async* {
-    //TODO: To implement
-    throw UnimplementedError();
-  }
-
-  Stream<ComponentsState> _mapComponentsByIdToState(String id) async* {
-    //TODO: To implement
-    throw UnimplementedError();
+    yield ComponentsLoading();
+    try {
+      final List<Component> components =
+          await _componentRepository.fetchComponents();
+      yield ComponentsLoaded(components: components);
+    } catch (_) {
+      yield ComponentsError();
+    }
   }
 }
