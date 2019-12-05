@@ -15,7 +15,7 @@ class UserRepository extends BaseRepository {
 
   Future<List<User>> getUsers({String search}) async {
     final url =
-        search.isEmpty ? '$baseUrl/users' : '$baseUrl/users/?search=$search';
+        (search == null) ? '$baseUrl/users' : '$baseUrl/users/?search=$search';
     final response = await httpClient.get(url);
 
     if (response.statusCode != 200) {
