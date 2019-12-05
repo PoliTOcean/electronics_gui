@@ -12,9 +12,7 @@ class Router {
       case homeRoute:
         return MaterialPageRoute(builder: (context) => HomePage());
       case loginRoute:
-        return MaterialPageRoute(
-            builder: (context) =>
-                LoginPage(userRepository: settings.arguments));
+        return MaterialPageRoute(builder: (context) => LoginPage());
       case addRoute:
         return MaterialPageRoute(builder: (context) => Container());
       default:
