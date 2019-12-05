@@ -3,16 +3,19 @@ import 'dart:convert';
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 
-import '../models/models.dart';
-import 'repository.dart';
+import '../../models/models.dart';
+import 'base_repository.dart';
 
-class UserRepository extends Repository {
+class UserRepository extends BaseRepository {
   final http.Client httpClient;
 
   UserRepository({@required this.httpClient});
 
-  Future<List<User>> getUsers({search}) async {
-    final url = (search) ? '$baseUrl/users' : '$baseUrl/users/?search=$search';
+  static final instance = UserRepository(httpClient: http.Client());
+
+  Future<List<User>> getUsers({String search}) async {
+    final url =
+        search.isEmpty ? '$baseUrl/users' : '$baseUrl/users/?search=$search';
     final response = await httpClient.get(url);
 
     if (response.statusCode != 200) {

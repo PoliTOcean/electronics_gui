@@ -4,16 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'blocs/blocs.dart';
 
 import 'helpers/helpers.dart';
-import 'resources/resources.dart';
 import 'views/views.dart';
 
 class App extends StatelessWidget {
-  final AuthRepository _authRepository;
-
-  App({Key key, @required AuthRepository authRepository})
-      : _authRepository = authRepository,
-        super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,7 +15,7 @@ class App extends StatelessWidget {
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: (context, state) {
           if (state is Unauthenticated) {
-            return LoginPage(authRepository: _authRepository);
+            return LoginPage();
           } else if (state is Authenticated) {
             return HomePage();
           } else {

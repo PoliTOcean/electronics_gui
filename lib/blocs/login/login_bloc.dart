@@ -1,4 +1,3 @@
-import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
 
 import 'bloc.dart';
@@ -6,11 +5,6 @@ import 'bloc.dart';
 import '../../resources/resources.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  AuthRepository _authRepository;
-
-  LoginBloc({@required AuthRepository authRepository})
-      : _authRepository = authRepository;
-
   @override
   LoginState get initialState => LoginEmpty();
 
@@ -26,8 +20,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       {String email, String password}) async* {
     yield LoginLoading();
     try {
-      await _authRepository.signinWithEmailAndPassword(
-          email: email, password: password);
+      await Repository.authRepository
+          .signinWithEmailAndPassword(email: email, password: password);
       yield LoginSuccess();
     } catch (e) {
       print(e);

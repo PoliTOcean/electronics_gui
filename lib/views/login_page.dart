@@ -5,12 +5,6 @@ import '../blocs/blocs.dart';
 import '../resources/resources.dart';
 
 class LoginPage extends StatelessWidget {
-  final AuthRepository _authRepository;
-
-  LoginPage({Key key, @required AuthRepository authRepository})
-      : _authRepository = authRepository,
-        super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,9 +26,8 @@ class LoginPage extends StatelessWidget {
                   ),
                   SizedBox(height: 20),
                   BlocProvider<LoginBloc>(
-                    create: (context) =>
-                        LoginBloc(authRepository: _authRepository),
-                    child: LoginForm(authRepository: _authRepository),
+                    create: (context) => LoginBloc(),
+                    child: LoginForm(),
                   )
                 ],
               )),
@@ -43,11 +36,7 @@ class LoginPage extends StatelessWidget {
 }
 
 class LoginForm extends StatefulWidget {
-  final AuthRepository _authRepository;
-
-  LoginForm({Key key, @required AuthRepository authRepository})
-      : _authRepository = authRepository,
-        super(key: key);
+  LoginForm({Key key}) : super(key: key);
 
   @override
   _LoginFormState createState() => _LoginFormState();
@@ -59,8 +48,6 @@ class _LoginFormState extends State<LoginForm> {
   final TextEditingController _emailEditingController = TextEditingController();
   final TextEditingController _passwordEditingController =
       TextEditingController();
-
-  AuthRepository get authRepository => widget._authRepository;
 
   @override
   Widget build(BuildContext context) {
