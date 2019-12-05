@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 
-import '../models/models.dart';
-import 'repository.dart';
+import '../../models/models.dart';
+import 'base_repository.dart';
 
-class AuthRepository extends Repository {
+class AuthRepository extends BaseRepository {
   User _currentUser;
   User get currentUser => _currentUser;
 
