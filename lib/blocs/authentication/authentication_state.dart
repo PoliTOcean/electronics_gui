@@ -13,7 +13,6 @@ abstract class AuthenticationState extends Equatable {
 class Uninitialized extends AuthenticationState {}
 
 class Authenticated extends AuthenticationState {
-  //TODO: Using User model instead of a string
   final User user;
 
   const Authenticated({@required this.user});
