@@ -1,26 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../helpers/helpers.dart';
 import '../models/models.dart';
+import '../blocs/blocs.dart';
 
 class HomePage extends StatelessWidget {
-  final List<Component> components = [
-    Component(
-        componentId: 10,
-        name: "ATMega328P",
-        category: 'Microcontroller',
-        package: 'PDIP',
-        box: 5,
-        cell: 2,
-        quantity: 6,
-        createdBy: null,
-        createdOn: null,
-        updatedBy: null,
-        updatedOn: null)
-  ];
-
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<ComponentsBloc>(context)..add(FetchComponents());
+
     return Scaffold(
         body: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
@@ -49,18 +38,44 @@ class HomePage extends StatelessWidget {
             ],
           ),
           SizedBox(height: 20.0),
-          DataTable(columns: [
-            DataColumn(label: Text('Name')),
-            DataColumn(label: Text("Category")),
-            DataColumn(label: Text("Package")),
-            DataColumn(label: Text("Box")),
-            DataColumn(label: Text("Cell")),
-            DataColumn(label: Text("Quantity")),
-            DataColumn(label: Text('Add/Remove/Delete')),
-          ], rows: _buildTableView(components))
+          BlocBuilder<ComponentsBloc, ComponentsState>(
+            builder: (context, state) {
+              if (state is ComponentsEmpty) {
+                return Center(child: Text('Empty'));
+              } else if (state is ComponentsLoading) {
+                return Center(child: CircularProgressIndicator());
+              } else if (state is ComponentsLoaded) {
+                return Expanded(
+                    child: SingleChildScrollView(
+                        child:
+                            ComponentDataTable(components: state.components)));
+              } else {
+                throw Exception();
+              }
+            },
+          )
         ],
       ),
     ));
+  }
+}
+
+class ComponentDataTable extends StatelessWidget {
+  final List<Component> components;
+
+  ComponentDataTable({@required this.components});
+
+  @override
+  Widget build(BuildContext context) {
+    return DataTable(columns: [
+      DataColumn(label: Text('Name')),
+      DataColumn(label: Text("Category")),
+      DataColumn(label: Text("Package")),
+      DataColumn(label: Text("Box")),
+      DataColumn(label: Text("Cell")),
+      DataColumn(label: Text("Quantity")),
+      DataColumn(label: Text('Add/Remove/Delete')),
+    ], rows: _buildTableView(components));
   }
 
   List<DataRow> _buildTableView(List<Component> components) => components
