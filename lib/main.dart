@@ -32,7 +32,9 @@ void main() {
 
   BlocSupervisor.delegate = SimpleBlocDelegate();
 
-  runApp(BlocProvider(
-      create: (context) => AuthenticationBloc()..add(AppStarted()),
-      child: App()));
+  runApp(MultiBlocProvider(providers: [
+    BlocProvider<AuthenticationBloc>(
+        create: (context) => AuthenticationBloc()..add(AppStarted())),
+    BlocProvider<ComponentsBloc>(create: (context) => ComponentsBloc())
+  ], child: App()));
 }
