@@ -9,7 +9,7 @@ part 'component.g.dart';
 @JsonSerializable()
 class Component extends Equatable {
   @JsonKey(name: '_id')
-  final int componentId;
+  final String componentId;
   final String name;
   final String category;
   final String package;

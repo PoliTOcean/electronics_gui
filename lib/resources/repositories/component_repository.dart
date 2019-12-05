@@ -14,7 +14,7 @@ class ComponentRepository extends BaseRepository {
   static final instance = ComponentRepository(httpClient: http.Client());
 
   Future<List<Component>> fetchComponents({String search}) async {
-    final url = search.isEmpty
+    final url = (search == null)
         ? '$baseUrl/components'
         : '$baseUrl/components/?search=$search';
     final response = await httpClient.get(url);

@@ -8,7 +8,7 @@ part of 'component.dart';
 
 Component _$ComponentFromJson(Map<String, dynamic> json) {
   return Component(
-    componentId: json['_id'] as int,
+    componentId: json['_id'] as String,
     name: json['name'] as String,
     category: json['category'] as String,
     package: json['package'] as String,
