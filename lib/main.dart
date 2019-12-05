@@ -32,10 +32,7 @@ void main() {
 
   BlocSupervisor.delegate = SimpleBlocDelegate();
 
-  final AuthRepository authRepository = AuthRepository.instance;
-
   runApp(BlocProvider(
-      create: (context) =>
-          AuthenticationBloc(authRepository: authRepository)..add(AppStarted()),
-      child: App(authRepository: authRepository)));
+      create: (context) => AuthenticationBloc()..add(AppStarted()),
+      child: App()));
 }
