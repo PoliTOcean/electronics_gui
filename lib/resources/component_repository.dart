@@ -11,7 +11,7 @@ class ComponentRepository extends Repository {
 
   ComponentRepository({@required this.httpClient});
 
-  Future<List<Component>> getComponents({String search}) async {
+  Future<List<Component>> fetchComponents({String search}) async {
     final url = search.isEmpty
         ? '$baseUrl/components'
         : '$baseUrl/components/?search=$search';
@@ -29,7 +29,7 @@ class ComponentRepository extends Repository {
     return components;
   }
 
-  Future<Component> getComponent({@required String id}) async {
+  Future<Component> fetchComponentById(String id) async {
     final url = '$baseUrl/components/$id';
     final response = await httpClient.get(url);
 
